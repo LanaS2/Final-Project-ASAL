@@ -14,50 +14,41 @@ def setup_driver():
     driver.quit()
 
 def add_products_to_cart(driver, num_items=4):
-    try:
+    driver.get("http://demostore.supersqa.com/")
+    buttons = driver.find_elements(By.CSS_SELECTOR, "a.add_to_cart_button")
 
-        driver.get("http://demostore.supersqa.com/")
-        buttons = driver.find_elements(By.CSS_SELECTOR, "a.add_to_cart_button")
+    if not buttons:
+        print("No 'Add to Cart' buttons found")
+        return
 
-        if not buttons:
-            print("No 'Add to Cart' buttons found")
-            return
+    items_to_add = min(num_items, len(buttons))
+    if items_to_add == 0:
+        print("No items available to add to the cart")
+        return
 
-        items_to_add = min(num_items, len(buttons))
-        if items_to_add == 0:
-            print("No items available to add to the cart")
-            return
-
-        for index in range(items_to_add):
-            buttons[index].click()
-            time.sleep(2)
-
-    except TimeoutException:
-        print("Page load timed out.")
+    for index in range(items_to_add):
+        buttons[index].click()
+        time.sleep(2)
 
 def check_cart_items(driver):
+    driver.get("http://demostore.supersqa.com/cart/")
     try:
-        driver.get("http://demostore.supersqa.com/cart/")
         items_in_cart = driver.find_elements(By.CLASS_NAME, "cart_item")
-
         if not items_in_cart:
             print("No items found in the cart")
             return []
 
-        print("Items added successfully:", len(items_in_cart) == 4)
-        print(f"Items in the cart: {len(items_in_cart)}")
-
         subtotal = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount").text
         print(f"Cart subtotal: {subtotal}")
 
-        return items_in_cart
+        return items_in_cart, subtotal
 
     except NoSuchElementException:
         print("Could not find cart item elements or subtotal.")
+        return [], None
     except Exception as e:
         print(f"An error occurred while checking cart items: {e}")
-    return []
-
+        return [], None
 
 def remove_one_item(driver):
     try:
@@ -68,18 +59,27 @@ def remove_one_item(driver):
         updated_subtotal = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount").text
         print(f"Subtotal after item removal: {updated_subtotal}")
 
+        return updated_subtotal
+
     except NoSuchElementException:
         print("Remove button or subtotal not found")
+        return None
     except Exception as e:
         print(f"An error occurred while removing an item: {e}")
-
+        return None
 
 def test_cart_operations(setup_driver):
     add_products_to_cart(setup_driver, 4)
-    cart_items = check_cart_items(setup_driver)
+    cart_items, original_subtotal = check_cart_items(setup_driver)
 
     if cart_items:
-        remove_one_item(setup_driver)
+        updated_subtotal = remove_one_item(setup_driver)
+
+        if original_subtotal and updated_subtotal:
+            print(f"Original subtotal: {original_subtotal}")
+            print(f"Updated subtotal: {updated_subtotal}")
+
+
 
 
 
