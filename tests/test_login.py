@@ -43,7 +43,7 @@ def test_validLogin1(driver):
     except NoSuchElementException:
         save_result(0, "Login failed", "Fail")
 
-    driver.get('http://demostore.supersqa.com/my-account/')  # Reset the session for the next test
+    driver.get('http://demostore.supersqa.com/my-account/')
 
 def test_validLogin2(driver):
     email = df.at[1, 'Email']
@@ -62,7 +62,7 @@ def test_validLogin2(driver):
     except NoSuchElementException:
         save_result(1, "Login failed", "Fail")
 
-    driver.get('http://demostore.supersqa.com/my-account/')  # Reset the session for the next test
+    driver.get('http://demostore.supersqa.com/my-account/')
 
 def test_wrongPassword(driver):
     email = df.at[2, 'Email']
@@ -82,11 +82,11 @@ def test_wrongPassword(driver):
     except NoSuchElementException:
         save_result(2, "No error message found", "Fail")
 
-    driver.get('http://demostore.supersqa.com/my-account/')  # Reset the session for the next test
+    driver.get('http://demostore.supersqa.com/my-account/')
 
 def test_emptyPassword(driver):
     email = df.at[3, 'Email']
-    password = ""  # Empty password
+    password = ""
     expected_result = df.at[3, 'Expected Result']
 
     driver.get('http://demostore.supersqa.com/my-account/')

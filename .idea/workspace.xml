@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="469bd8ae-fda5-40df-96f2-0d0be61da567" name="Changes" comment="final draft">
+    <list default="true" id="469bd8ae-fda5-40df-96f2-0d0be61da567" name="Changes" comment="test cart edits">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Registration.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Registration.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/login.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_cart.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_cart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_login.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,21 +39,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.test_register.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/USER/PycharmProjects/ASALProject",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.test_register.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/USER/PycharmProjects/ASALProject&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\USER\PycharmProjects\ASALProject" />
@@ -85,7 +85,13 @@
       <workItem from="1725987246280" duration="680000" />
       <workItem from="1726060031734" duration="3178000" />
       <workItem from="1726305349357" duration="5151000" />
-      <workItem from="1726311210299" duration="1996000" />
+      <workItem from="1726311210299" duration="2096000" />
+      <workItem from="1726313337801" duration="19000" />
+      <workItem from="1726406897977" duration="40000" />
+      <workItem from="1726408733922" duration="164000" />
+      <workItem from="1726511553946" duration="2669000" />
+      <workItem from="1726514541972" duration="401000" />
+      <workItem from="1726555911074" duration="2379000" />
     </task>
     <task id="LOCAL-00001" summary="final draft">
       <option name="closed" value="true" />
@@ -95,7 +101,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726310568535</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="test cart edits">
+      <option name="closed" value="true" />
+      <created>1726313302249</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726313302249</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -103,7 +117,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="final draft" />
-    <option name="LAST_COMMIT_MESSAGE" value="final draft" />
+    <MESSAGE value="test cart edits" />
+    <option name="LAST_COMMIT_MESSAGE" value="test cart edits" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ASALProject$test_register.coverage" NAME="test_register Coverage Results" MODIFIED="1725744007129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />

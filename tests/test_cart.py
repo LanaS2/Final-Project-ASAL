@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 import time
 
 @pytest.fixture
@@ -15,11 +15,9 @@ def setup_driver():
 
 def add_products_to_cart(driver, num_items=4):
     driver.get("http://demostore.supersqa.com/")
-    buttons = driver.find_elements(By.CSS_SELECTOR, "a.add_to_cart_button")
 
-    if not buttons:
-        print("No 'Add to Cart' buttons found")
-        return
+    time.sleep(3)
+    buttons = driver.find_elements(By.CSS_SELECTOR, "a.add_to_cart_button")
 
     items_to_add = min(num_items, len(buttons))
     if items_to_add == 0:
@@ -30,17 +28,28 @@ def add_products_to_cart(driver, num_items=4):
         buttons[index].click()
         time.sleep(2)
 
+
+def get_cart_subtotal(driver):
+    time.sleep(2)
+    try:
+        subtotal_element = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount")
+        return subtotal_element.text
+    except NoSuchElementException:
+        print("Subtotal not found")
+        return None
+
 def check_cart_items(driver):
     driver.get("http://demostore.supersqa.com/cart/")
+    time.sleep(3)
     try:
         items_in_cart = driver.find_elements(By.CLASS_NAME, "cart_item")
+
         if not items_in_cart:
             print("No items found in the cart")
-            return []
+            return [], None
 
-        subtotal = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount").text
+        subtotal = get_cart_subtotal(driver)
         print(f"Cart subtotal: {subtotal}")
-
         return items_in_cart, subtotal
 
     except NoSuchElementException:
@@ -56,9 +65,8 @@ def remove_one_item(driver):
         remove_btn.click()
         time.sleep(3)
 
-        updated_subtotal = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount").text
+        updated_subtotal = get_cart_subtotal(driver)
         print(f"Subtotal after item removal: {updated_subtotal}")
-
         return updated_subtotal
 
     except NoSuchElementException:
@@ -68,16 +76,20 @@ def remove_one_item(driver):
         print(f"An error occurred while removing an item: {e}")
         return None
 
+
 def test_cart_operations(setup_driver):
-    add_products_to_cart(setup_driver, 4)
-    cart_items, original_subtotal = check_cart_items(setup_driver)
+    driver = setup_driver
+    add_products_to_cart(driver, 4)
+
+    cart_items, original_subtotal = check_cart_items(driver)
 
     if cart_items:
-        updated_subtotal = remove_one_item(setup_driver)
+        updated_subtotal = remove_one_item(driver)
 
         if original_subtotal and updated_subtotal:
             print(f"Original subtotal: {original_subtotal}")
             print(f"Updated subtotal: {updated_subtotal}")
+
 
 
 
